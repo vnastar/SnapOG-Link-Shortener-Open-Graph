@@ -1,0 +1,28 @@
+name = "snapog-worker"
+main = "worker.js"
+compatibility_date = "2024-01-01"
+
+# 1. Liên kết Cơ sở dữ liệu Cloudflare D1
+[[d1_databases]]
+binding = "DB"
+database_name = "vnastar_snapog" # "link_analytics"
+database_id = "79a4c680-d8ef-4f8b-9d81-c93a19205e14" # "<THAY_THE_BANG_DATABASE_ID_CUA_BAN>" # Lấy từ lệnh: npx wrangler d1 info link_analytics
+
+# 2. Liên kết Kho lưu trữ Cloudflare R2
+[[r2_buckets]]
+binding = "MY_R2_BUCKET"
+bucket_name = "vnastar-snapog"
+
+# 3. Biến môi trường hệ thống (Non-sensitive variables)
+[vars]
+ADMIN_DOMAIN = "admin.domain.com"
+SHORT_DOMAIN = "short.domain.com"
+# Mật khẩu ADMIN_KEY là thông tin nhạy cảm (Secret), KHÔNG nên lưu plaintext tại đây.
+# Hãy thiết lập qua lệnh: npx wrangler secret put ADMIN_KEY
+# Hoặc cài đặt tại Cloudflare Dashboard > Settings > Variables and Secrets > Add Secret.
+
+# 4. (Tùy chọn) Gắn sẵn Custom Domains qua Wrangler
+# routes = [
+#   { pattern = "admin.domain.com/*", custom_domain = true },
+#   { pattern = "short.domain.com/*", custom_domain = true }
+# ]

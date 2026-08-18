@@ -1,0 +1,8 @@
+{
+  "name": "SnapOG Link Shortener \u0026 Open Graph",
+  "description": "Serverless link shortener with Open Graph optimization and real-time click analytics for Cloudflare Workers, D1, and R2.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

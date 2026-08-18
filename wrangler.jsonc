@@ -1,0 +1,44 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "snapog-worker",
+  "main": "worker.js",
+  "compatibility_date": "2024-01-01",
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
+
+  // 1. Liên kết Cơ sở dữ liệu Cloudflare D1
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "vnastar_snapog",
+      "database_id": "79a4c680-d8ef-4f8b-9d81-c93a19205e14"
+    }
+  ],
+
+  // 2. Liên kết Kho lưu trữ Cloudflare R2
+  "r2_buckets": [
+    {
+      "binding": "MY_R2_BUCKET",
+      "bucket_name": "vnastar-snapog"
+    }
+  ],
+
+  // 3. Biến môi trường hệ thống (Non-sensitive variables)
+  "vars": {
+    "ADMIN_DOMAIN": "admin.domain.com",
+    "SHORT_DOMAIN": "short.domain.com"
+    // Lưu ý: ADMIN_KEY là bí mật (Secret), hãy tạo qua lệnh: npx wrangler secret put ADMIN_KEY
+  },
+
+  // 4. Cấu hình Giám sát Logs & Analytics
+  "observability": {
+    "enabled": true
+  }
+
+  // 5. (Tùy chọn) Gắn trực tiếp Tên miền Tùy chỉnh (Custom Domains)
+  // "routes": [
+  //   { "pattern": "admin.domain.com/*", "custom_domain": true },
+  //   { "pattern": "short.domain.com/*", "custom_domain": true }
+  // ]
+}
